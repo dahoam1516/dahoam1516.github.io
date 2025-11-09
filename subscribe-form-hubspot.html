@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Subscribe Form</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
   <style>
+    /* Container styling */
     body {
       margin: 0;
       padding: 0;
       background: #ffffff;
       font-family: 'Montserrat', Helvetica, Arial, sans-serif;
-      font-weight: 600;
-      font-size: 11px;
-      text-transform: uppercase;
       display: flex;
       justify-content: center;
       align-items: flex-start;
@@ -21,160 +20,50 @@
     .form-container {
       width: 100%;
       max-width: 1000px;
-      padding: 0 8px;
+      padding: 16px;
+      box-sizing: border-box;
+      background: #ffffff;
     }
-    #hubspot-horizontal-form {
-      width: 100%;
-      height: auto;
-    }
+
     iframe {
-      width: 100% !important;
+      width: 100%;
+      min-height: 400px;
       border: none;
-      overflow: visible !important;
+      display: block;
     }
   </style>
 </head>
 <body>
   <div class="form-container">
-    <div id="hubspot-horizontal-form"></div>
+    <iframe 
+      src="https://share.hsforms.com/1/451211d1-7b82-4020-a748-6ae156c77a88.html?portalId=244265343"
+      id="hubspotFormIframe"
+      scrolling="no"
+    ></iframe>
   </div>
 
-  <!-- HubSpot Embed Script -->
-  <script charset="utf-8" src="https://js.hsforms.net/forms/embed/v2.js"></script>
   <script>
-    hbspt.forms.create({
-      region: "na1",
-      portalId: "244265343",
-      formId: "451211d1-7b82-4020-a748-6ae156c77a88",
-      target: "#hubspot-horizontal-form",
-      onFormReady: function($form) {
-        const iframe = document.querySelector('#hubspot-horizontal-form iframe');
-        if (!iframe) return;
+    // Attempt to auto-adjust iframe height
+    const iframe = document.getElementById('hubspotFormIframe');
 
-        const css = `
-          body, .hs-form {
-            font-family: 'Montserrat', Helvetica, Arial, sans-serif !important;
-            background: #ffffff !important;
-            color: #000000 !important;
-            font-size: 11px !important;
-            font-weight: 600 !important;
-            text-transform: uppercase !important;
-          }
-          .hs-form fieldset {
-            border: none !important;
-            padding: 0 !important;
-            margin: 0 !important;
-          }
-          .hs-form fieldset.form-columns-3,
-          .hs-form fieldset.form-columns-2 {
-            display: flex !important;
-            flex-wrap: nowrap !important;
-            justify-content: center !important;
-            align-items: stretch !important;
-            gap: 8px !important;
-          }
-          .hs-form .input {
-            flex: 1 1 auto !important;
-            display: inline-flex !important;
-            align-items: center !important;
-          }
-          input[type=text],
-          input[type=email],
-          select,
-          textarea {
-            width: 160px !important;
-            background: #ffffff !important;
-            color: #000000 !important;
-            border: 2px solid #e5e7eb !important;
-            border-radius: 8px !important;
-            padding: 8px 12px !important;
-            font-family: 'Montserrat', Helvetica, Arial, sans-serif !important;
-            font-size: 11px !important;
-            font-weight: 600 !important;
-            text-transform: uppercase !important;
-            outline: none !important;
-            transition: all 0.2s ease !important;
-          }
-          input[type=text]:focus,
-          input[type=email]:focus {
-            border-color: #1899D4 !important;
-          }
-          input::placeholder {
-            color: #000000 !important;
-            opacity: 0.5 !important;
-          }
-          .hs-submit input {
-            background: #1899D4 !important;
-            color: #ffffff !important;
-            font-family: 'Montserrat', Helvetica, Arial, sans-serif !important;
-            font-size: 11px !important;
-            font-weight: 600 !important;
-            text-transform: uppercase !important;
-            border: none !important;
-            border-radius: 8px !important;
-            padding: 8px 12px !important;
-            cursor: pointer !important;
-            transition: all 0.25s ease !important;
-            white-space: nowrap !important;
-            display: inline-flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            transform: translateY(0) !important;
-          }
-          .hs-submit input:hover {
-            background: #1580b8 !important;
-            transform: translateY(-2px) !important;
-            filter: brightness(1.1) !important;
-          }
-          .hs-submit input:active {
-            transform: translateY(0) !important;
-            filter: brightness(1) !important;
-          }
-          .submitted-message {
-            background: #ffffff !important;
-            color: #000000 !important;
-            border: 2px solid #1899D4 !important;
-            border-radius: 8px !important;
-            padding: 8px 12px !important;
-            font-size: 11px !important;
-            font-weight: 600 !important;
-            text-transform: uppercase !important;
-            text-align: center !important;
-          }
-          @media (max-width: 768px) {
-            .hs-form fieldset.form-columns-3,
-            .hs-form fieldset.form-columns-2 {
-              flex-wrap: nowrap !important;
-              overflow-x: auto !important;
-            }
-            input[type=text],
-            input[type=email],
-            .hs-submit input {
-              width: 140px !important;
-            }
-          }
-        `;
-
-        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-        if (iframeDoc && iframeDoc.head) {
-          const styleEl = iframeDoc.createElement('style');
-          styleEl.textContent = css;
-          iframeDoc.head.appendChild(styleEl);
-
-          const linkEl = iframeDoc.createElement('link');
-          linkEl.rel = 'stylesheet';
-          linkEl.href = 'https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap';
-          iframeDoc.head.appendChild(linkEl);
+    function resizeIframe() {
+      try {
+        const doc = iframe.contentDocument || iframe.contentWindow.document;
+        if (doc && doc.body) {
+          iframe.style.height = doc.body.scrollHeight + 'px';
         }
-
-        // --- Auto-adjust iframe height ---
-        function resizeIframe() {
-          iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 'px';
-        }
-        iframe.addEventListener('load', resizeIframe);
-        setInterval(resizeIframe, 500); // continuously adjust height in case of dynamic content
+      } catch (e) {
+        // Cross-origin restrictions may prevent reading iframe content
+        // In that case, iframe will show scrollbars if needed
+        console.warn('Auto-resize blocked by cross-origin restrictions.');
       }
-    });
+    }
+
+    // Resize once on load
+    iframe.onload = resizeIframe;
+
+    // Optional: periodically attempt resize in case form dynamically changes
+    setInterval(resizeIframe, 1000);
   </script>
 </body>
 </html>
